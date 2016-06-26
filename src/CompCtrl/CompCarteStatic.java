@@ -76,11 +76,11 @@ public class CompCarteStatic extends RoboticsAPIApplication
     	//_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5)); 	
     	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
-		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
+		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	
     	//limit force at TCP, not very obvious
-    	//impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
+    	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
           
     	//impedanceControlMode.setMaxControlForce(100, 100, 3, 20, 20, 20, true);
         
