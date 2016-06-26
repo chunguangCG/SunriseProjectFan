@@ -78,8 +78,11 @@ public class CompCarteStatic extends RoboticsAPIApplication
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
-    	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
-               
+    	//impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
+          
+    	impedanceControlMode.setMaxControlForce(100, 100, 10, 20, 20, 20, true);
+        
+    	
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _Gripper.getFrame("/CompCenter").move(posHold);
