@@ -36,11 +36,11 @@ public class CompCarte extends RoboticsAPIApplication
 	
 	private static final int StiffnessRot = 0;  	//unit: Nm/rad  Default: 300*/
 	
-	/*private static final int stiffnessZ = 5;  	//unit: N/m. Default: 2000
+	private static final int stiffnessZ = 5;  	//unit: N/m. Default: 2000
 	private static final int stiffnessY = 5;
 	private static final int stiffnessX = 5;
 	
-	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300*/
+	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300
     
 
 
@@ -75,10 +75,10 @@ public class CompCarte extends RoboticsAPIApplication
     	//_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5)); 	
     	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		/*impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
+		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
 		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(stiffnessY);
 		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(stiffnessZ);
-		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);*/
+		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
 		
                
         /*getLogger().info("start Postionhold.");       
