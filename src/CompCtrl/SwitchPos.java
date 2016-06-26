@@ -40,8 +40,8 @@ public class SwitchPos extends RoboticsAPIApplication
     private static final double StiffnessTran = 3000;  	//unit: N/m. Default: 2000
 	private static final double StiffnessRot = 300;  	//unit: Nm/rad  Default: 300
     
-	private static final double MaxForceTCP = 0.1;		//unit: N
-	private static final double MaxTorqueTCP = 0.1;  	//unit: Nm
+	private static final double MaxForceTCP = 5;		//unit: N
+	private static final double MaxTorqueTCP = 1;  	//unit: Nm
 
 
     @Override
