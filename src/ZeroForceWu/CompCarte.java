@@ -6,10 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import com.kuka.common.ThreadUtil;
-import com.kuka.connectivity.fri.ClientCommandMode;
-import com.kuka.connectivity.fri.FRIConfiguration;
-import com.kuka.connectivity.fri.FRIJointOverlay;
-import com.kuka.connectivity.fri.FRISession;
+
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
 import com.kuka.roboticsAPI.controllerModel.Controller;
 import com.kuka.roboticsAPI.deviceModel.LBR;
