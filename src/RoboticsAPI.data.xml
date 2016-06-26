@@ -2,6 +2,24 @@
 <RoboticsAPIData version="3">
     <world>
         <gravitation x="0.0" y="0.0" z="9.81"/>
+        <frame name="P1">
+            <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466909160724"/>
+            </additionalInformation>
+        </frame>
+        <frame name="P2">
+            <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466909178707"/>
+            </additionalInformation>
+        </frame>
+        <frame name="P3">
+            <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466909181603"/>
+            </additionalInformation>
+        </frame>
     </world>
     <objectTemplates>
         <toolTemplate class="" name="Gripper">
