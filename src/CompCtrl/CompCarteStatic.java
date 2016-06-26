@@ -40,9 +40,10 @@ public class CompCarteStatic extends RoboticsAPIApplication
 	private static final int stiffnessY = 5;
 	private static final int stiffnessX = 5;
 	
-	private static final int StiffnessRot = 2;  	//unit: Nm/rad  Default: 300
+	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300
     
-
+	private static final int MaxForceTCP = 5;		//unit: N
+	private static final int MaxTorqueTCP = 2;  	//unit: Nm
 
 
     @Override
@@ -75,11 +76,11 @@ public class CompCarteStatic extends RoboticsAPIApplication
     	//_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5)); 	
     	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		/*impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
+		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
 		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(stiffnessY);
 		impedanceControlMode.parametrize(CartDOF.Z).setStiffness(stiffnessZ);
-		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);*/
-		
+		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+    	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
                
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
