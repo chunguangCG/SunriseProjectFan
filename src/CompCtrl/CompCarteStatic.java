@@ -42,8 +42,8 @@ public class CompCarteStatic extends RoboticsAPIApplication
     private static final double StiffnessTran = 0.1;  	//unit: N/m. Default: 2000
 	private static final double StiffnessRot = 0.1;  	//unit: Nm/rad  Default: 300
     
-	private static final double MaxForceTCP = 3;		//unit: N
-	private static final double MaxTorqueTCP = 30;  	//unit: Nm
+	private static final double MaxForceTCP = 10;		//unit: N
+	private static final double MaxTorqueTCP = 2;  	//unit: Nm
 
 
     @Override
@@ -78,6 +78,8 @@ public class CompCarteStatic extends RoboticsAPIApplication
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+    	
+    	//limit force at TCP, not very obvious
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
           
     	//impedanceControlMode.setMaxControlForce(100, 100, 3, 20, 20, 20, true);
