@@ -63,11 +63,7 @@ public class SwitchPos extends RoboticsAPIApplication
     {
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
-    	
-    	_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.25));
-    	getLogger().info("Ready to pull up"); 
-    	
-    	
+   	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
@@ -77,6 +73,9 @@ public class SwitchPos extends RoboticsAPIApplication
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _Gripper.getFrame("/CompCenter").move(posHold);*/
         
+    	_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.25).setMode(impedanceControlMode));
+    	getLogger().info("Ready to pull up"); 
+    	
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(150.0).setMode(impedanceControlMode));
     	getLogger().info("Pull up OK.");
     }
