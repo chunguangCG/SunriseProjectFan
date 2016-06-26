@@ -77,7 +77,7 @@ public class SwitchPos extends RoboticsAPIApplication
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _Gripper.getFrame("/CompCenter").move(posHold);*/
         
-    	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")));
+    	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(150.0).setMode(impedanceControlMode));
     	getLogger().info("Pull up OK.");
     }
 
