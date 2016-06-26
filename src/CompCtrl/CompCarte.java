@@ -30,17 +30,17 @@ public class CompCarte extends RoboticsAPIApplication
     private Tool _Gripper;
     
     //Impedance para.
-    private static final int stiffnessZ = 0;  	//unit: N/m. Default: 2000
+    /*private static final int stiffnessZ = 0;  	//unit: N/m. Default: 2000
 	private static final int stiffnessY = 0;
 	private static final int stiffnessX = 0;
 	
-	private static final int StiffnessRot = 0;  	//unit: Nm/rad  Default: 300
+	private static final int StiffnessRot = 0;  	//unit: Nm/rad  Default: 300*/
 	
-	/*private static final int stiffnessZ = 5;  	//unit: N/m. Default: 2000
+	private static final int stiffnessZ = 5;  	//unit: N/m. Default: 2000
 	private static final int stiffnessY = 5;
 	private static final int stiffnessX = 5;
 	
-	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300*/
+	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300
 
 
     @Override
@@ -67,16 +67,10 @@ public class CompCarte extends RoboticsAPIApplication
     	getLogger().info("Gripper frame to P1."); 
     	
     	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P1")).setCartVelocity(150.0));
-    	getLogger().info("CompCenter frame to P1.");
-    	
-    	
-    	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0));
-    	getLogger().info("CompCenter frame to P2.");
-    	
-    	/*// move to start pose
-    	_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5));
-        
-    	
+    	getLogger().info("CompCenter frame to P1. Now START compliance");
+    		
+    	// move to start pose
+    	//_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5)); 	
     	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
@@ -85,9 +79,12 @@ public class CompCarte extends RoboticsAPIApplication
 		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
 		
                
-        getLogger().info("start Postionhold.");       
+        /*getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _Gripper.getFrame("/CompCenter").move(posHold);*/
+        
+    	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0).setMode(impedanceControlMode));
+    	getLogger().info("CompCenter frame to P2.");
     }
 
     /**
