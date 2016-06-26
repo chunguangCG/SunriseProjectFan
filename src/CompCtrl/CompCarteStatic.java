@@ -40,7 +40,7 @@ public class CompCarteStatic extends RoboticsAPIApplication
 	private static final int stiffnessY = 5;
 	private static final int stiffnessX = 5;
 	
-	private static final int StiffnessRot = 1;  	//unit: Nm/rad  Default: 300
+	private static final int StiffnessRot = 2;  	//unit: Nm/rad  Default: 300
     
 
 
