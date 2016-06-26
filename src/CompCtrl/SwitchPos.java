@@ -70,7 +70,7 @@ public class SwitchPos extends RoboticsAPIApplication
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
         
     	//ONLY test
-    	_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.2).setMode(impedanceControlMode));
+    	//_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.2).setMode(impedanceControlMode));
     	getLogger().info("Ready to pull up"); 
     	
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
