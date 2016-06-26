@@ -80,7 +80,7 @@ public class CompCarteStatic extends RoboticsAPIApplication
 		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	//impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
           
-    	impedanceControlMode.setMaxControlForce(100, 100, 10, 20, 20, 20, true);
+    	impedanceControlMode.setMaxControlForce(100, 100, 10, 20, 20, 20, false);
         
     	
         getLogger().info("start Postionhold.");       
