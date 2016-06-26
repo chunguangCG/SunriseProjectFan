@@ -66,7 +66,7 @@ public class GraspComp extends RoboticsAPIApplication
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
     	
-    	_Gripper.move(ptp(getApplicationData().getFrame("/StarGraspPnt")).setJointVelocityRel(0.25));
+    	//_Gripper.move(ptp(getApplicationData().getFrame("/StarGraspPnt")).setJointVelocityRel(0.25));
     	getLogger().info("Grasp Ready. Please start gripper!"); 
     	
     	

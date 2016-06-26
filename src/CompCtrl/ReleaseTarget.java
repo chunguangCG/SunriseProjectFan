@@ -24,7 +24,7 @@ import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
 /**
  * Creates a FRI Session.
  */
-public class SwitchPos extends RoboticsAPIApplication
+public class ReleaseTarget extends RoboticsAPIApplication
 {
     private Controller _lbrController;
     private LBR _lbr;
@@ -65,21 +65,19 @@ public class SwitchPos extends RoboticsAPIApplication
     	_Gripper.attachTo(_lbr.getFlange());
    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
-		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
+		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
         
     	//_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.2).setMode(impedanceControlMode));
-    	getLogger().info("Ready to pull up"); 
+    	
+    	getLogger().info("Ready to release"); 
     	
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	getLogger().info("Pull up OK.");
+    	getLogger().info("Release target OK.");
     	
-    	_Gripper.move(linRel(Transformation.ofDeg(-150,0,0,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	getLogger().info("Horizontal Move OK.");
-    	
-    	_Gripper.move(linRel(Transformation.ofDeg(0,0,-100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	getLogger().info("Release Position OK.");
+    	_Gripper.move(ptp(getApplicationData().getFrame("/GuideStarPnt")).setJointVelocityRel(0.2));
+    	getLogger().info("Back to GuidePnt again.");
     }
 
     /**
@@ -90,7 +88,7 @@ public class SwitchPos extends RoboticsAPIApplication
      */
     public static void main(final String[] args)
     {
-        final SwitchPos app = new SwitchPos();
+        final ReleaseTarget app = new ReleaseTarget();
         app.runApplication();
     }
 
