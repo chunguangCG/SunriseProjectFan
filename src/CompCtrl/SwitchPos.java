@@ -65,8 +65,8 @@ public class SwitchPos extends RoboticsAPIApplication
     	_Gripper.attachTo(_lbr.getFlange());
    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
-		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
+		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
                
         /*getLogger().info("start Postionhold.");       
