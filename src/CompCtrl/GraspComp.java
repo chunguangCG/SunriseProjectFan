@@ -22,7 +22,7 @@ import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
 /**
  * Creates a FRI Session.
  */
-public class HandGuidePos extends RoboticsAPIApplication
+public class GraspComp extends RoboticsAPIApplication
 {
     private Controller _lbrController;
     private LBR _lbr;
@@ -66,8 +66,8 @@ public class HandGuidePos extends RoboticsAPIApplication
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
     	
-    	_Gripper.move(ptp(getApplicationData().getFrame("/GuideStarPnt")).setJointVelocityRel(0.25));
-    	getLogger().info("Hand Guide Ready."); 
+    	_Gripper.move(ptp(getApplicationData().getFrame("/StarGraspPnt")).setJointVelocityRel(0.25));
+    	getLogger().info("Grasp Ready. Please start gripper!"); 
     	
     	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
@@ -91,7 +91,7 @@ public class HandGuidePos extends RoboticsAPIApplication
      */
     public static void main(final String[] args)
     {
-        final HandGuidePos app = new HandGuidePos();
+        final GraspComp app = new GraspComp();
         app.runApplication();
     }
 
