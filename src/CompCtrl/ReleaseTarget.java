@@ -20,6 +20,7 @@ import com.kuka.roboticsAPI.motionModel.PositionHold;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.JointImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
+import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
 /**
  * Creates a FRI Session.
@@ -42,7 +43,8 @@ public class ReleaseTarget extends RoboticsAPIApplication
     
 	private static final double MaxForceTCP = 0.1;		//unit: N
 	private static final double MaxTorqueTCP = 0.1;  	//unit: Nm
-
+	
+	private final static String informationText="Is gripper safe?";
 
     @Override
     public void initialize()
@@ -52,10 +54,6 @@ public class ReleaseTarget extends RoboticsAPIApplication
         
         //copy tool information "Gripper" to controller
         _Gripper = getApplicationData().createFromTemplate("Gripper");
-        // **********************************************************************
-        // *** change next line to the FRIClient's IP address                 ***
-        // **********************************************************************
-        _clientName = "192.168.1.13";
     }
 
     @Override
@@ -75,6 +73,19 @@ public class ReleaseTarget extends RoboticsAPIApplication
     	
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	getLogger().info("Release target OK.");
+    	
+    	int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
+        while (isCancel == 1)
+        {
+        	_Gripper.move(linRel(Transformation.ofDeg(0,0,5,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+        	//getLogger().info("Release target OK.");
+        	isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
+        	if (isCancel == 0)
+        	{
+        		break;
+        	}
+        	//return;
+        }
     	
     	_Gripper.move(ptp(getApplicationData().getFrame("/GuideStarPnt")).setJointVelocityRel(0.2));
     	getLogger().info("Back to GuidePnt again.");
