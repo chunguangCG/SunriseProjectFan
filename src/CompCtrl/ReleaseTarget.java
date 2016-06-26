@@ -39,7 +39,7 @@ public class ReleaseTarget extends RoboticsAPIApplication
 	
 	private static final int StiffnessRot = 0;  	//unit: Nm/rad  Default: 300*/
     private static final double StiffnessTran = 3000;  	//unit: N/m. Default: 2000
-	private static final double StiffnessRot = 300;  	//unit: Nm/rad  Default: 300
+	private static final double StiffnessRot = 300;  	//unit: Nm/rad  Default: 200
     
 	private static final double MaxForceTCP = 0.1;		//unit: N
 	private static final double MaxTorqueTCP = 0.1;  	//unit: Nm
@@ -74,6 +74,7 @@ public class ReleaseTarget extends RoboticsAPIApplication
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	getLogger().info("Release target OK.");
     	
+    	//Ensure gripper safety
     	int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
         while (isCancel == 1)
         {
@@ -84,7 +85,6 @@ public class ReleaseTarget extends RoboticsAPIApplication
         	{
         		break;
         	}
-        	//return;
         }
     	
     	_Gripper.move(ptp(getApplicationData().getFrame("/GuideStarPnt")).setJointVelocityRel(0.2));
