@@ -1,5 +1,6 @@
 package CompCtrl;
 
+import static com.kuka.roboticsAPI.motionModel.BasicMotions.lin;
 import static com.kuka.roboticsAPI.motionModel.BasicMotions.ptp;
 
 import java.util.concurrent.TimeUnit;
@@ -61,22 +62,22 @@ public class CompCarte extends RoboticsAPIApplication
     {
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
-
-        // move to start pose
+    	
+    	_Gripper.move(ptp(getApplicationData().getFrame("/P1")).setJointVelocityRel(0.25));
+    	getLogger().info("Gripper frame to P1."); 
+    	
+    	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P1")).setCartVelocity(150.0));
+    	getLogger().info("CompCenter frame to P1.");
+    	
+    	
+    	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0));
+    	getLogger().info("CompCenter frame to P2.");
+    	
+    	/*// move to start pose
     	_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5));
         
     	
-    	/*JointImpedanceControlMode _jntImp = new JointImpedanceControlMode(7); 
-        _jntImp.setStiffnessForAllJoints(0).setDampingForAllJoints(1.0);
-        
-        PositionHold posHold = new PositionHold(_jntImp, 60, TimeUnit.DAYS);
-       
-        getLogger().info("start Postionhold.");
-        
-        //PositionHold posHold = new PositionHold(new PositionControlMode(), 60, TimeUnit.DAYS);
-        PositionHold posHold = new PositionHold(_jntImp, 60, TimeUnit.DAYS);
-        _Gripper.move(posHold);
-        */
+    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		impedanceControlMode.parametrize(CartDOF.X).setStiffness(stiffnessX);
 		impedanceControlMode.parametrize(CartDOF.Y).setStiffness(stiffnessY);
@@ -86,7 +87,7 @@ public class CompCarte extends RoboticsAPIApplication
                
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
-        _Gripper.getFrame("/CompCenter").move(posHold);
+        _Gripper.getFrame("/CompCenter").move(posHold);*/
     }
 
     /**
