@@ -77,8 +77,8 @@ public class ReleaseTarget extends RoboticsAPIApplication
     	int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
         while (isCancel == 1)
         {
-        	_Gripper.move(linRel(Transformation.ofDeg(0,0,5,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-        	//getLogger().info("Release target OK.");
+        	_Gripper.move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+        	getLogger().info("Move up to ensure safety.");
         	isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
         	if (isCancel == 0)
         	{
