@@ -42,8 +42,8 @@ public class CompCarteStatic extends RoboticsAPIApplication
     private static final double StiffnessTran = 0.1;  	//unit: N/m. Default: 2000
 	private static final double StiffnessRot = 0.1;  	//unit: Nm/rad  Default: 300
     
-	private static final double MaxForceTCP = 10;		//unit: N
-	private static final double MaxTorqueTCP = 2;  	//unit: Nm
+	private static final double MaxForceTCP = 5;		//unit: N
+	private static final double MaxTorqueTCP = 1;  	//unit: Nm
 
 
     @Override
