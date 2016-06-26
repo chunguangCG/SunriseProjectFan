@@ -76,7 +76,7 @@ public class SwitchPos extends RoboticsAPIApplication
     	_Gripper.move(ptp(getApplicationData().getFrame("/GraspDonePnt")).setJointVelocityRel(0.25).setMode(impedanceControlMode));
     	getLogger().info("Ready to pull up"); 
     	
-    	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(150.0).setMode(impedanceControlMode));
+    	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	getLogger().info("Pull up OK.");
     	
     	_Gripper.move(linRel(Transformation.ofDeg(-150,0,0,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(150.0).setMode(impedanceControlMode));
