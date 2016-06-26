@@ -21,7 +21,7 @@
         <frame name="P2">
             <transformation a="-3.0140486210404465" b="0.37007735441920775" c="-3.1114083187009896" x="700.952045772716" y="-0.048410542631033227" z="382.98394404974215"/>
             <additionalInformation>
-                <info key="LastModificationTime" type="java.lang.Long" value="1466910149518"/>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466922993739"/>
                 <info base="LBR_iiwa_14_R820_1" controller="KUKA_Sunrise_Cabinet_1" device="LBR_iiwa_14_R820_1" tcpName="Flange" tool="Flange" type="com.kuka.roboticsAPI.deviceModel.TeachInformation">
                     <tcpTransformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
                 </info>
@@ -34,11 +34,23 @@
                 </redundancy>
             </redundancyData>
         </frame>
-        <frame name="P3">
+        <frame name="GuideStarPnt">
             <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
             <additionalInformation>
-                <info key="LastModificationTime" type="java.lang.Long" value="1466909181603"/>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466923021556"/>
             </additionalInformation>
+            <redundancyData>
+                <redundancy transformationProviderName="legacy" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy"/>
+            </redundancyData>
+        </frame>
+        <frame name="StarGraspPnt">
+            <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
+            <additionalInformation>
+                <info key="LastModificationTime" type="java.lang.Long" value="1466923115771"/>
+            </additionalInformation>
+            <redundancyData>
+                <redundancy transformationProviderName="legacy" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy"/>
+            </redundancyData>
         </frame>
     </world>
     <objectTemplates>

@@ -22,7 +22,7 @@ import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
 /**
  * Creates a FRI Session.
  */
-public class CompCarteStatic extends RoboticsAPIApplication
+public class HandGuidePos extends RoboticsAPIApplication
 {
     private Controller _lbrController;
     private LBR _lbr;
@@ -66,11 +66,11 @@ public class CompCarteStatic extends RoboticsAPIApplication
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
     	
-    	_Gripper.move(ptp(getApplicationData().getFrame("/P1")).setJointVelocityRel(0.25));
-    	getLogger().info("Gripper frame to P1."); 
+    	_Gripper.move(ptp(getApplicationData().getFrame("/GuideStarPnt")).setJointVelocityRel(0.25));
+    	getLogger().info("Hand Guide Ready."); 
     	
-    	_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0));
-    	getLogger().info("CompCenter frame to P2. Now START compliance");
+    	//_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0));
+    	//getLogger().info("CompCenter frame to P2. Now START compliance");
     		
     	// move to start pose
     	//_Gripper.move(ptp(0., Math.toRadians(30), .0, -Math.toRadians(60), .0, Math.toRadians(90), .0).setJointVelocityRel(0.5)); 	
@@ -96,7 +96,7 @@ public class CompCarteStatic extends RoboticsAPIApplication
      */
     public static void main(final String[] args)
     {
-        final CompCarteStatic app = new CompCarteStatic();
+        final HandGuidePos app = new HandGuidePos();
         app.runApplication();
     }
 
