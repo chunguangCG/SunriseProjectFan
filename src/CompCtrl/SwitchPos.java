@@ -37,8 +37,8 @@ public class SwitchPos extends RoboticsAPIApplication
 	private static final int stiffnessX = 0;
 	
 	private static final int StiffnessRot = 0;  	//unit: Nm/rad  Default: 300*/
-    private static final double StiffnessTran = 1500;  	//unit: N/m. Default: 2000
-	private static final double StiffnessRot = 250;  	//unit: Nm/rad  Default: 300
+    private static final double StiffnessTran = 3000;  	//unit: N/m. Default: 2000
+	private static final double StiffnessRot = 400;  	//unit: Nm/rad  Default: 300
     
 	private static final double MaxForceTCP = 0.1;		//unit: N
 	private static final double MaxTorqueTCP = 0.1;  	//unit: Nm
@@ -65,8 +65,8 @@ public class SwitchPos extends RoboticsAPIApplication
     	_Gripper.attachTo(_lbr.getFlange());
    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
-		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
-		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
+		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
+		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
                
         /*getLogger().info("start Postionhold.");       
