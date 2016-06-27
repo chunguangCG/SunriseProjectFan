@@ -14,6 +14,7 @@ import com.kuka.roboticsAPI.deviceModel.JointPosition;
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.deviceModel.OperationMode;
 import com.kuka.roboticsAPI.motionModel.PTP;
+import com.kuka.roboticsAPI.uiModel.ApplicationDialogType;
 
 /**
  * This application can be used as template for Lbr iiwa Position and GMS Referencing.
@@ -30,6 +31,11 @@ public class PositionAndGMSReferencing extends RoboticsAPIApplication {
     private final static int GMS_REFERENCING_COMMAND = 2;             // safety command for GMS referencing
     private final static int COMMAND_SUCCESSFUL = 1;
     private int positionCounter = 0;
+    
+    private final static String informationText=
+			"This application is intended for floor mounted robots!"+ "\n" +
+			"\n" +
+			"The robot will calibrate sensors.";
 
     public void initialize()
     {
@@ -39,7 +45,14 @@ public class PositionAndGMSReferencing extends RoboticsAPIApplication {
 
     public void run()
     {
-        PositionMastering mastering = new PositionMastering(lbr_iiwa);
+    	getLogger().info("Show modal dialog and wait for user to confirm");
+        int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "OK", "Cancel");
+        if (isCancel == 1)
+        {
+            return;
+        }
+    	
+    	PositionMastering mastering = new PositionMastering(lbr_iiwa);
 
         boolean allAxesMastered = true;
         for (int i = 0; i < axisId.length; ++i)
