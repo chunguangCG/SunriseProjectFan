@@ -41,8 +41,8 @@ public class StepOutTarget extends RoboticsAPIApplication
     private static final double StiffnessTran = 3000;  	//unit: N/m. Default: 2000
 	private static final double StiffnessRot = 300;  	//unit: Nm/rad  Default: 200
     
-	private static final double MaxForceTCP = 0.1;		//unit: N
-	private static final double MaxTorqueTCP = 0.1;  	//unit: Nm
+	private static final double MaxForceTCP = 10;		//unit: N
+	private static final double MaxTorqueTCP = 2;  	//unit: Nm
 	
 	private final static String informationText="More Z-dir move?";
 
