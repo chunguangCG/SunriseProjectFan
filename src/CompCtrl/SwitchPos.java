@@ -10,6 +10,7 @@ import java.util.concurrent.TimeoutException;
 import com.kuka.common.ThreadUtil;
 
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
+import com.kuka.roboticsAPI.conditionModel.ForceCondition;
 import com.kuka.roboticsAPI.controllerModel.Controller;
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.geometricModel.CartDOF;
@@ -20,6 +21,8 @@ import com.kuka.roboticsAPI.motionModel.PositionHold;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.JointImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
+import com.kuka.roboticsAPI.sensorModel.DataRecorder;
+import com.kuka.roboticsAPI.sensorModel.StartRecordingAction;
 
 /**
  * Creates a FRI Session.
@@ -63,6 +66,19 @@ public class SwitchPos extends RoboticsAPIApplication
     {
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
+    	
+    	DataRecorder rec = new DataRecorder();
+    	rec.setFileName("Recording.log");
+    	rec.setSampleInterval(10);
+    	
+    	rec.addExternalJointTorque(_lbr);
+    	rec.addCartesianForce(_Gripper.getFrame("/CompCenter"), null);
+    	
+    	StartRecordingAction startAction = new StartRecordingAction(rec);
+    	ForceCondition startCondition =
+    	ForceCondition.createSpatialForceCondition(_Gripper.getFrame("/CompCenter"),
+    	1.0);
+
    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
@@ -76,11 +92,17 @@ public class SwitchPos extends RoboticsAPIApplication
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	getLogger().info("Pull up OK.");
     	
-    	_Gripper.move(linRel(Transformation.ofDeg(-150,0,0,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+    	_Gripper.move(linRel(Transformation.ofDeg(-150,0,0,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode).triggerWhen(startCondition, startAction));
     	getLogger().info("Horizontal Move OK.");
     	
     	_Gripper.move(linRel(Transformation.ofDeg(0,0,-105,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	getLogger().info("Release Position OK.");
+    	
+    	rec.stopRecording();
+    	
+    	//if (rec.awaitFileAvailable(5, TimeUnit. SECONDS)){
+    		// Evaluation of the file if available
+    		//}
     }
 
     /**
