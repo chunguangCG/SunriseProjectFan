@@ -9,6 +9,7 @@ import java.util.concurrent.TimeoutException;
 import com.kuka.common.ThreadUtil;
 
 import com.kuka.roboticsAPI.applicationModel.RoboticsAPIApplication;
+import com.kuka.roboticsAPI.conditionModel.ForceCondition;
 import com.kuka.roboticsAPI.controllerModel.Controller;
 import com.kuka.roboticsAPI.deviceModel.LBR;
 import com.kuka.roboticsAPI.geometricModel.CartDOF;
@@ -18,6 +19,9 @@ import com.kuka.roboticsAPI.motionModel.PositionHold;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.CartesianImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.JointImpedanceControlMode;
 import com.kuka.roboticsAPI.motionModel.controlModeModel.PositionControlMode;
+import com.kuka.roboticsAPI.sensorModel.DataRecorder;
+import com.kuka.roboticsAPI.sensorModel.DataRecorder.AngleUnit;
+import com.kuka.roboticsAPI.sensorModel.StartRecordingAction;
 
 /**
  * Creates a FRI Session.
@@ -66,6 +70,31 @@ public class GraspComp extends RoboticsAPIApplication
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
     	
+    	//Record data
+    	DataRecorder rec = new DataRecorder();
+    	rec.setFileName("Recording.log");
+    	rec.setSampleInterval(10);
+    	rec.setTimeout(1000, TimeUnit.HOURS);
+    	
+    	
+    	rec.addCartesianForce(_Gripper.getFrame("/CompCenter"),
+    			_Gripper.getFrame("/CompCenter"));	//record content
+    	rec.addCartesianTorque(_Gripper.getFrame("/CompCenter"),
+    			_Gripper.getFrame("/CompCenter"));
+    	rec.addCommandedCartesianPositionXYZ(_Gripper.getFrame("/CompCenter"),
+    			_Gripper.getFrame("/CompCenter"));
+    	rec.addCurrentCartesianPositionXYZ(_Gripper.getFrame("/CompCenter"),
+    			_Gripper.getFrame("/CompCenter"));
+    	rec.addCurrentJointPosition(_lbr, AngleUnit.Degree);
+    	
+    	rec.enable();
+    	
+    	//triger start
+    	/*StartRecordingAction startAction = new StartRecordingAction(rec);
+    	ForceCondition startCondition =
+    	ForceCondition.createSpatialForceCondition(_Gripper.getFrame("/CompCenter"),
+    	1.0);*/
+    	
     	//_Gripper.move(ptp(getApplicationData().getFrame("/StarGraspPnt")).setJointVelocityRel(0.25));
     	getLogger().info("Grasp Ready. Please start gripper!"); 
     	
@@ -74,13 +103,14 @@ public class GraspComp extends RoboticsAPIApplication
 		impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);
-               
+        
+    	rec.startRecording();
+    	
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _Gripper.getFrame("/CompCenter").move(posHold);
         
-    	/*_Gripper.getFrame("/CompCenter").move(lin(getApplicationData().getFrame("/P2")).setCartVelocity(150.0).setMode(impedanceControlMode));
-    	getLogger().info("CompCenter frame to P2.");*/
+        rec.stopRecording();
     }
 
     /**
