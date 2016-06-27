@@ -78,13 +78,13 @@ public class GraspComp extends RoboticsAPIApplication
     	
     	
     	rec.addCartesianForce(_Gripper.getFrame("/CompCenter"),
-    			_Gripper.getFrame("/CompCenter"));	//record content
+    			null);	//record content, orintation with Measured frame
     	rec.addCartesianTorque(_Gripper.getFrame("/CompCenter"),
-    			_Gripper.getFrame("/CompCenter"));
+    			null);
     	rec.addCommandedCartesianPositionXYZ(_Gripper.getFrame("/CompCenter"),
-    			_Gripper.getFrame("/CompCenter"));
+    			null);
     	rec.addCurrentCartesianPositionXYZ(_Gripper.getFrame("/CompCenter"),
-    			_Gripper.getFrame("/CompCenter"));
+    			null);
     	rec.addCurrentJointPosition(_lbr, AngleUnit.Degree);
     	
     	rec.enable();
