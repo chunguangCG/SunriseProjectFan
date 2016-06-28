@@ -81,7 +81,7 @@ public class Comp2StarGraspPnt extends RoboticsAPIApplication
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
          	
     	//_MultiFunTool.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	_Gripper.move(lin(getApplicationData().getFrame("/ReleasePnt")).setCartVelocity(100.0).setMode(impedanceControlMode));
+    	_Gripper.move(lin(getApplicationData().getFrame("/StarGraspPnt")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
