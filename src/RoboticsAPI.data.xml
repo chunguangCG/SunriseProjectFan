@@ -51,9 +51,9 @@
             </redundancyData>
         </frame>
         <frame name="StarGraspPnt">
-            <transformation a="-1.4974949859022566" b="-0.006540827401874995" c="3.1307007999065903" x="-294.7695514377908" y="451.6563943947636" z="554.7915097419947"/>
+            <transformation a="-1.490834396565494" b="0.014546638700037353" c="3.127544989505678" x="-279.08380512640633" y="438.7044786721662" z="558.2853864715155"/>
             <additionalInformation>
-                <info key="LastModificationTime" type="java.lang.Long" value="1467083138184"/>
+                <info key="LastModificationTime" type="java.lang.Long" value="1467092176103"/>
                 <info base="LBR_iiwa_14_R820_1" controller="KUKA_Sunrise_Cabinet_1" device="LBR_iiwa_14_R820_1" tcpName="Flange" tool="Flange" type="com.kuka.roboticsAPI.deviceModel.TeachInformation">
                     <tcpTransformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
                 </info>
@@ -61,8 +61,8 @@
             <redundancyData>
                 <redundancy transformationProviderName="KUKA_Sunrise_Cabinet_1/LBR_iiwa_14_R820_1" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy">
                     <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$StatusParameter" value="2" valueType="java.lang.Integer"/>
-                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$TurnParameter" value="8" valueType="java.lang.Integer"/>
-                    <info type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy$E1Parameter" value="0.0024084697165313754" valueType="java.lang.Double"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.StatusTurnRedundancy$TurnParameter" value="12" valueType="java.lang.Integer"/>
+                    <info type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy$E1Parameter" value="-0.011724346975313" valueType="java.lang.Double"/>
                 </redundancy>
             </redundancyData>
         </frame>
