@@ -42,6 +42,7 @@ public class StepOutTarget extends RoboticsAPIApplication
 	private static final double StiffnessRot = 300;  	//unit: Nm/rad  Default: 200
     
 	private static final double MaxForceTCP = 8;		//unit: N
+	private static final double MaxForceTCPZ = 20;		//unit: N
 	private static final double MaxTorqueTCP = 1.5;  	//unit: Nm
 	
 	private final static String informationText="More Z-dir move?";
@@ -65,7 +66,7 @@ public class StepOutTarget extends RoboticsAPIApplication
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
-    	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
+    	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCPZ, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
         
     	
     	
