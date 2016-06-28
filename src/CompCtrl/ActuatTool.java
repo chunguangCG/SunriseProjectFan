@@ -47,6 +47,8 @@ public class ActuatTool extends RoboticsAPIApplication
 	private static final double MaxTorqueTCP = 1.5;  	//unit: Nm
 	
 	private final static String informationText="More Z-dir move?";
+	
+	private final static String informationCheckTool="Multi-functional Tool attached?";
 
     @Override
     public void initialize()
@@ -56,6 +58,7 @@ public class ActuatTool extends RoboticsAPIApplication
         
         //copy tool information "Gripper" to controller
         _Gripper = getApplicationData().createFromTemplate("Gripper");
+        _MultiFunTool = getApplicationData().createFromTemplate("MultiFunTool");
     }
 
     @Override
@@ -63,22 +66,28 @@ public class ActuatTool extends RoboticsAPIApplication
     {
     	//use tool
     	_Gripper.attachTo(_lbr.getFlange());
+    	
+
+    	int NotAttached = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationCheckTool, "OK", "Cancel");
+        if (NotAttached == 1)
+        {
+            return;
+        }
+    	
+    	_MultiFunTool.attachTo(_Gripper.getFrame("/ContPlane"));
    	
     	CartesianImpedanceControlMode impedanceControlMode = 	new CartesianImpedanceControlMode();
 		//impedanceControlMode.parametrize(CartDOF.X, CartDOF.Y, CartDOF.Z).setStiffness(StiffnessTran);
 		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
-        
-    	
-    	
-    	
-    	_Gripper.getFrame("/CompCenter").move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+         	
+    	_MultiFunTool.move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
     	
     	//Ensure gripper safety
     	int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
         while (isCancel == 0)
         {
-        	_Gripper.getFrame("/CompCenter").move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+        	_MultiFunTool.getFrame("/CompCenter").move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
         	getLogger().info("Step Move up.");
         	isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
         	if (isCancel == 1)
@@ -89,7 +98,7 @@ public class ActuatTool extends RoboticsAPIApplication
     	
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
-        _Gripper.getFrame("/CompCenter").move(posHold);
+        _MultiFunTool.move(posHold);
     }
 
     /**
