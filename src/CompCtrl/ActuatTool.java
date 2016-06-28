@@ -81,21 +81,8 @@ public class ActuatTool extends RoboticsAPIApplication
 		//impedanceControlMode.parametrize(CartDOF.ROT).setStiffness(StiffnessRot);
     	impedanceControlMode.setMaxControlForce(MaxForceTCP, MaxForceTCP, MaxForceTCP, MaxTorqueTCP, MaxTorqueTCP, MaxTorqueTCP, true);  
          	
-    	_MultiFunTool.move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	
-    	//Ensure gripper safety
-    	int isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
-        while (isCancel == 0)
-        {
-        	_MultiFunTool.getFrame("/CompCenter").move(linRel(Transformation.ofDeg(0,0,10,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-        	getLogger().info("Step Move up.");
-        	isCancel = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationText, "Yes", "No");
-        	if (isCancel == 1)
-        	{
-        		break;
-        	}
-        }
-    	
+    	_MultiFunTool.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
+    	  	
         getLogger().info("start Postionhold.");       
         PositionHold posHold = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
         _MultiFunTool.move(posHold);
