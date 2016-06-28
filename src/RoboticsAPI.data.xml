@@ -92,9 +92,9 @@
             </redundancyData>
         </frame>
         <frame name="ReleasePnt">
-            <transformation a="-1.1659656435659367" b="0.0010179687461857614" c="3.1380247283399902" x="-294.0339075383527" y="453.0328453890138" z="532.5522847393119"/>
+            <transformation a="-1.1659656435659367" b="0.0010179687461857614" c="3.1380247283399902" x="-294.0339075383527" y="453.0328453890138" z="530.6"/>
             <additionalInformation>
-                <info key="LastModificationTime" type="java.lang.Long" value="1467078477829"/>
+                <info key="LastModificationTime" type="java.lang.Long" value="1467078631120"/>
                 <info base="LBR_iiwa_14_R820_1" controller="KUKA_Sunrise_Cabinet_1" device="LBR_iiwa_14_R820_1" tcpName="Flange" tool="Flange" type="com.kuka.roboticsAPI.deviceModel.TeachInformation">
                     <tcpTransformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="0.0"/>
                 </info>
