@@ -72,7 +72,7 @@ public class GraspComp extends RoboticsAPIApplication
     	
     	//Record data
     	DataRecorder rec = new DataRecorder();
-    	rec.setFileName("Recording7.log");
+    	rec.setFileName("Recording8.log");
     	rec.setSampleInterval(10);
     	rec.setTimeout(1000, TimeUnit.HOURS);
     	
