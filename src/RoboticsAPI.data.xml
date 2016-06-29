@@ -65,6 +65,15 @@
                     <info type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy$E1Parameter" value="-0.007799872818508422" valueType="java.lang.Double"/>
                 </redundancy>
             </redundancyData>
+            <frame name="AbovePnt">
+                <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="150.0"/>
+                <additionalInformation>
+                    <info key="LastModificationTime" type="java.lang.Long" value="1467181411444"/>
+                </additionalInformation>
+                <redundancyData>
+                    <redundancy transformationProviderName="legacy" type="com.kuka.roboticsAPI.deviceModel.LBRE1Redundancy"/>
+                </redundancyData>
+            </frame>
         </frame>
         <frame name="GraspDonePnt">
             <transformation a="-2.8547528946383074" b="-0.013538329372233333" c="-3.083088895757798" x="673.4813908180897" y="-19.426564297973997" z="178.3955580091704"/>
