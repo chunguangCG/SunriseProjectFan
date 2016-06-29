@@ -78,10 +78,10 @@ public class AutoPreGrasp extends RoboticsAPIApplication
         {
             return;
         }
-    	_Gripper.move(lin(getApplicationData().getFrame("/StarGraspPnt/AbovePnt")).setCartVelocity(100.0).setMode(impedanceControlMode));
+    	_Gripper.move(lin(getApplicationData().getFrame("/StarGraspPnt/AbovePnt")).setCartVelocity(70.0).setMode(impedanceControlMode));
     	
     	
-    	
+    	//keep until safe
     	int PathSafe = getApplicationUI().displayModalDialog(ApplicationDialogType.QUESTION, informationCheckGripper, "Yes", "No");
         while (PathSafe == 1)
         {
@@ -95,9 +95,8 @@ public class AutoPreGrasp extends RoboticsAPIApplication
         	}
         }
     	
-
-    	//_MultiFunTool.move(linRel(Transformation.ofDeg(0,0,100,0,0,0),getApplicationData().getFrame("/BaseFrame")).setCartVelocity(100.0).setMode(impedanceControlMode));
-    	_Gripper.move(lin(getApplicationData().getFrame("/StarGraspPnt")).setCartVelocity(100.0).setMode(impedanceControlMode));
+        //move down to the PreGraspPnt
+    	_Gripper.move(lin(getApplicationData().getFrame("/StarGraspPnt")).setCartVelocity(70.0).setMode(impedanceControlMode));
     	
         //getLogger().info("start Postionhold.");       
         PositionHold posHoldLong = new PositionHold(impedanceControlMode, 60, TimeUnit.DAYS);
