@@ -146,7 +146,7 @@
                     <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="200.0"/>
                 </frame>
                 <frame name="ContPlane">
-                    <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="194.0"/>
+                    <transformation a="0.0" b="0.0" c="0.0" x="0.0" y="0.0" z="197.4"/>
                 </frame>
             </frames>
             <loadData cogA="0.0" cogB="0.0" cogC="0.0" cogX="0.0" cogY="0.0" cogZ="119.95589384076585" inertiaX="0.0" inertiaY="0.0" inertiaZ="0.0" mass="2.965120759040255"/>
